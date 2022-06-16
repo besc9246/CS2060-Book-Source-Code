@@ -9,7 +9,7 @@
 
 
 #define MIN_NUMBER 1
-const MAX_NUMBER = 100;
+const int MAX_NUMBER = 100;
 
 void guessGame(void); 
 int isCorrect(int, int); 
@@ -33,7 +33,7 @@ void guessGame(void)
    do {
       answer = MIN_NUMBER + rand() % MAX_NUMBER;
 
-      printf("Hello, I have a number between %d and %d .\n" 
+      printf(", I have a number between %d and %d .\n" 
           "Can you guess my number?\n"
            "Please type your first guess.", MIN_NUMBER, MAX_NUMBER);
 
