@@ -6,85 +6,109 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>>
 
 
 #define MIN_NUMBER 1
-const int MAX_NUMBER = 100;
+const int MAX_NUMBER = 1000;
 
 void guessGame(void); 
 int isCorrect(int, int); 
 
 
-int main(void)
+/*
+ int main(void)
 {
-   //srand(time(0));
-   //guessGame();
-    
-
-    unsigned int aCount = 0;
-    unsigned int bCount = 0;
-    unsigned int cCount = 0;
-    unsigned int dCount = 0;
-    unsigned int fCount = 0;
-
-    puts("Enter the letter grades." );
-    puts("Enter the EOF character to end input." );
-    int grade; // one grade
-
-    // loop until user types end-of-file key sequence
-    while ((grade = getchar()) != EOF) {
-       
-       // determine which grade was input
-       switch (grade) { // switch nested in while
-
-          case 'A': // grade was uppercase A
-          case 'a': // or lowercase a
-             ++aCount;
-             break; // necessary to exit switch
-
-          case 'B': // grade was uppercase B
-          case 'b': // or lowercase b
-             ++bCount;
-             break;
-
-          case 'C': // grade was uppercase C
-          case 'c': // or lowercase c
-             ++cCount;
-             break;
-
-          case 'D': // grade was uppercase D
-          case 'd': // or lowercase d
-             ++dCount;
-             break;
-
-          case 'F': // grade was uppercase F
-          case 'f': // or lowercase f
-             ++fCount;
-             break;
-
-          case '\n': // ignore newlines,
-          case '\t': // tabs,
-          case ' ': // and spaces in input
-             break;
-
-          default: // catch all other characters
-             printf("%s", "Incorrect letter grade entered.");
-             puts(" Enter a new grade.");
-             break; // optional; will exit switch anyway
-       }
-    } // end while
-
-    // output summary of results
-    puts("\nTotals for each letter grade are:");
-    printf("A: %u\n", aCount);
-    printf("B: %u\n", bCount);
-    printf("C: %u\n", cCount);
-    printf("D: %u\n", dCount);
-    printf("F: %u\n", fCount);
-    
+   srand(time(0));
+   guessGame();
     
    return 0;
 } // end main
+ 
+ */
+
+
+// function main begins program execution
+int main( void )
+{
+    // Initialize constants
+    const int stdnt_cnt = 10;
+    const int pass = 1;
+    const int bonus_stdnt_num = 8;
+    const int min = 1;
+    const int max = 2;
+    
+    // Initialize validation vars
+    //double numEntered = 0;
+    unsigned int scanfRtrn = -1;
+    
+    
+   // initialize variables in definitions
+   unsigned int passes = 0; // number of passes
+   unsigned int failures = 0; // number of failures
+   unsigned int student = 1; // student counter
+   int result = 0; // one exam result
+
+    /*
+   // process 10 students using counter-controlled loop
+   while ( student <= 10 ) {
+   */
+    
+    // Create boolean flag for loop
+    bool numValid = false;
+    
+    // process stdnt_cnt students using counter-controlled loop
+   //while (student <= stdnt_cnt) {
+   do {
+
+      // prompt user for input and obtain value from user
+      //printf( "%s", "Enter result ( 1=pass,2=fail ): " );
+       puts("Enter result ( 1 = pass, 2 = fail ): ");
+      
+       //scanf( "%d", &result );
+       scanfRtrn = scanf( "%d", &result);
+       
+       // Clear buffer
+       while (getchar() != '\n');
+
+           
+           if(scanfRtrn != 1 || result < min || result > max ) {
+               printf("Invalid input. Please enter a value between %d and %d.\n", min, max);
+           }
+           else {
+               // if result 1, increment passes
+               //if ( result == 1 ) {
+               if (result == pass) {
+                   passes = passes + 1;
+              } // end if
+              else { // otherwise, increment failures
+                 failures = failures + 1;
+              } // end else
+
+              student = student + 1; // increment student counter
+               
+               if (student > stdnt_cnt) {
+               numValid = true;
+               }
+           }
+           
+       
+   } while (!numValid && student <= stdnt_cnt);
+
+       // termination phase; display number of passes and failures
+       printf( "Passed %u\n", passes );
+       printf( "Failed %u\n", failures );
+
+       
+        // if more than bonus_stdnt_num students passed, print "Bonus to instructor!"
+       //if (passes > 8 ) {
+       if (passes > bonus_stdnt_num ) {
+          puts( "Bonus to instructor!" );
+           
+           
+       } // end if
+       
+} // end function main
 
 
 void guessGame(void)
