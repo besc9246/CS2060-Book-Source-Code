@@ -5,7 +5,7 @@
 // function main begins program execution 
 int main( void )
 {
-   printf( "Welcome to C!\n" );
+   printf( "Hello Ben. Welcome to C!\n" );
 } // end function main 
 
 
