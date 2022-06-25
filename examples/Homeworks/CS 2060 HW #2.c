@@ -17,7 +17,6 @@ int main(void) {
     double totalHours = 0.0;
     double hrsCntr = 3.0;
     bool stopLoop = false;
-    //bool validData = true;
     int scanfRtrn = -1;
     short carCnt = 0;
     
@@ -39,107 +38,81 @@ int main(void) {
         while (getchar() != '\n');
         
         if (scanfRtrn != scanfOkRtrnVal) {
-            puts("\nPlease enter a number. No characters other than numbers and a decimal point are allowed.\n");
+            puts("\nPlease enter a single number. No characters other than numbers and a decimal point are allowed.\n");
         }
-        
-        if (numHours != sentinelVal) {
-            
-            if (scanfRtrn == scanfOkRtrnVal) {
-            
-                if (numHours < min || numHours > max) {
-                    printf("\nInvalid input. Number of hours must be between %.2lf and %.2lf\n\n", min, max);
-                }
-                
-               else if (numHours > sentinelVal && numHours < 0) {
-                    puts("\nInvalid input.\n");
-               }
-            
-               else if (numHours == 0.0) {
-                    puts("\nThere were no cars parked today.\n");
-               }
-                            
-                carCnt++;
-                
-                totalHours += numHours;
-                
-                if (!stopLoop && numHours > min) {
-                
-                    //Charge must be reset
-                    if (numHours <= 2.0 && numHours > min) {
-                        charge = 2.0;
-                    }
-                    else if (numHours != min) {
-                        charge = 1.5;
-                    }
-                    
-                    //Hours counter must be reset
-                    hrsCntr = 2.0;
-                    //hrsCntr = 3.0;
-                    
-                    while (hrsCntr <= maxHrsDaily && hrsCntr < numHours && numHours > min) {
-                    
-                        if (numHours <= 3.0 && numHours > min) {
-                            charge = 2.0;
-                        }
-                        
-                        else {
-                            charge += 0.5;
-                        }
-         
-                        hrsCntr = hrsCntr + 1.0;
-                    
-                    }//end while
-                    
-                    
-                    chargeSum += charge;
-            //         if (numHours > 4.0 && numHours <= 5.0) {
-            //            charge += 0.5;
-            //        }
-            //         if (numHours > 5.0 && numHours <= 6.0) {
-            //            charge += 0.5;
-            //        }
-            //         if (numHours > 6.0 && numHours <= 7.0) {
-            //            charge += 0.5;
-            //        }
-            //         if (numHours > 7.0 && numHours <= 8.0) {
-            //            charge += 0.5;
-            //        }
-            //         if (numHours > 8.0 && numHours <= 9.0) {
-            //            charge += 0.5;
-            //        }
-            //         if (numHours > 9.0 && numHours <= 10.0) {
-            //            charge += 0.5;
-            //        }
-            //         if (numHours > 10.0 && numHours <= 11.0) {
-            //            charge += 0.5;
-            //        }
-            //         if (numHours > 11.0 && numHours <= 12.0) {
-            //            charge += 0.5;
-            //        }
-            //        else if (numHours > 12.0 && numHours <= 13.0) {
-            //            charge += 0.5;
-            //        }
-                   
-                    puts("Car\t\t Hours\t\t Charge\n");
-                    
-                    printf("%d\t\t %.2lf\t\t  $%.2lf\n\n", carCnt, numHours, charge);
-                    
-                    
-                } //end if (!stopLoop)
-                
-            } //end if if (scanfRtrn == 1)
-            
-        } //end if (numHours == sentinelVal)
         
         else {
-            stopLoop = true;
-        }
+                    
+            if (numHours != sentinelVal) {
+            
+                if (scanfRtrn == scanfOkRtrnVal) {
+                
+                    if (numHours < min || numHours > max) {
+                        printf("\nInvalid input. Number of hours must be between %.2lf and %.2lf\n\n", min, max);
+                    }
+                    
+                    else if (numHours > sentinelVal && numHours < 0) {
+                        puts("\nInvalid input.\n");
+                    }
+                
+                    else if (numHours == 0.0) {
+                        puts("\nThere were no cars parked today.\n");
+                    }
+                                
+                    carCnt++;
+                    
+                    totalHours += numHours;
+                    
+                    if (!stopLoop && numHours > min) {
+                    
+                        //Charge must be reset
+                        if (numHours <= 2.0) {
+                            charge = 2.0;
+                        }
+                        //else if (numHours != min) {
+                        else {
+                            charge = 1.5;
+                        }
+                        
+                        //Hours counter must be reset here
+                        hrsCntr = 2.0;
+                        
+                        while (hrsCntr <= maxHrsDaily && hrsCntr < numHours) {
+                        
+                            if (numHours <= 3.0) {
+                                charge = 2.0;
+                            }
+                            
+                            else {
+                                charge += 0.5;
+                            }
+             
+                            hrsCntr = hrsCntr + 1.0;
+                        
+                        }//End while
+                                    
+                        chargeSum += charge;
+               
+                        puts("Car\t\t Hours\t\t Charge\n");
+                        
+                        printf("%d\t\t %.2lf\t\t  $%.2lf\n\n", carCnt, numHours, charge);
+                        
+                    } //End if (!stopLoop)
+                    
+                } //End if (scanfRtrn == 1)
+            
+            } //End if (numHours == sentinelVal)
         
-    } //end while (!stopLoop)
+            else {
+                stopLoop = true;
+            }
+            
+        } //End else
+        
+    } //End while (!stopLoop)
     
-    
-    puts("Total for the day:\n");
-    puts("Cars\t\t Hours\t\t Charge\n");
+    puts("Totals for the day:\n");
+    puts("Car(s)\t\t Hours\t\t Charge\n");
     
     printf("%d\t\t %.2lf\t\t  $%.2lf\n\n", carCnt, totalHours, chargeSum);
 
