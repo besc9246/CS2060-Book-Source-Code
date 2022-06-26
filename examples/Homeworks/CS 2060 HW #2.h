@@ -16,4 +16,8 @@ bool validateData(int scanfRtrn, double min, double max, double sentinelVal, dou
 
 int getUserInput(double numHours);
 
+double chargeAlgorithm (double numHours, int carCnt);
+
+void printTotals(int carCnt, double totalHours, double chargeSum);
+
 #endif /* CS_2060_HW__2_h */
