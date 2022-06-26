@@ -9,5 +9,11 @@
 #define CS_2060_HW__2_h
 
 #include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+bool validateData(int scanfRtrn, double min, double max, double sentinelVal, double numHours);
+
+int getUserInput(double numHours);
 
 #endif /* CS_2060_HW__2_h */
