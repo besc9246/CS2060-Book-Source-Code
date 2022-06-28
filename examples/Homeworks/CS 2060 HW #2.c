@@ -98,6 +98,7 @@ bool validateData(int scanfRtrn, double min, double max, double sentinelVal, dou
         
     } //End if (numHours != sentinelVal)
     
+    
     return isError;
     
 } //End validateData()
